@@ -3,6 +3,9 @@ import config
 
 
 
+
+
+
 def fetch_id(tvseries_name): 
     try:
         url = config.API_KEY + tvseries_name
@@ -34,9 +37,6 @@ def fetch_id(tvseries_name):
 # def LastSeason(imdbID, year):
     
     
-
-
-
 
 
 if __name__ == "__main__":

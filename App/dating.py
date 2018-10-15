@@ -30,6 +30,23 @@ def compare_dates(given_date):
         return False   
 
 
+def dateFormatter(date):
+    date.strip()
+
+    if len(date) is 4:
+        string = "The next season begins in {}".format(date)
+
+    elif  len(date.split()) is 3: 
+        formatted_date = parser.parse(date).strftime("%Y-%m-%d")
+
+        return "The next episode airs on {}".format(formatted_date)
+
+    else:
+        return "The next episode airs on {}".format(date)
+
+           
+
+
 
 
     

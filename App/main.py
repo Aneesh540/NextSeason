@@ -2,24 +2,23 @@ from UserInput import *
 
 
 def main():
+    
     user_email = input("Email address: ")
     user_series = input("TV Series: ")
 
     user = UserDetails(user_email,user_series)
-    datebase(user)
+    message = ''
 
-    for i in user.getSeries():
-        x = getDates(i)
+    for series in user.getSeries():
+        next_date = getNextEpisodeDate(series)
 
-        (x, date)
-
-
-
-
+        message += emailFormatter(series,next_date)
 
     
+    email = Emailer(user.getEmail(),message)
+    email.emailThis()
 
-    
+
 
 if __name__ == "__main__":
     main()
