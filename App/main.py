@@ -1,5 +1,6 @@
 from UserInput import *
-
+import fringe
+from emailing import *
 
 def main():
     
@@ -10,11 +11,13 @@ def main():
     message = ''
 
     for series in user.getSeries():
-        next_date = getNextEpisodeDate(series)
+        next_date = fringe.getNextEpisodeDate(series)
+        # print(next_date)
 
         message += emailFormatter(series,next_date)
 
-    
+    print(user.getEmail())
+    print(message)
     email = Emailer(user.getEmail(),message)
     email.emailThis()
 

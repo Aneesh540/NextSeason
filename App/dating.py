@@ -1,6 +1,6 @@
 import datetime
 from dateutil import parser
-
+from dating import *
 
 def compare_dates(given_date):
     """" 
@@ -45,9 +45,6 @@ def dateFormatter(date):
         return "The next episode airs on {}".format(date)
 
            
-
-
-
 
     
 if __name__ == "__main__":
