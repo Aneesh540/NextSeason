@@ -2,10 +2,6 @@ import requests
 import config
 
 
-
-
-
-
 def fetch_id(tvseries_name): 
     try:
         url = config.API_KEY + tvseries_name

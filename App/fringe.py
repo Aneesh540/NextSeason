@@ -37,7 +37,7 @@ class ApiDetails:
      
 
 def fetchLastSeason(title):
-    season_list = []
+    
     url = "https://www.imdb.com/title/{}/?ref_=ttep_ep_tt".format(title)
     
     sauce = urllib.request.urlopen(url).read()
@@ -97,7 +97,7 @@ def ListFormatter(date_list):
       
 
 def getNextEpisodeDate(mpa):
-    
+
   
     emp = ApiDetails(mpa)
     last_season = fetchLastSeason(emp.imdbID)
