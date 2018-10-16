@@ -28,12 +28,40 @@ class ApiDetails:
     @property
     def year(self):
         api_year = self.key['Year']
-        api_year = api_year.split('-')    
-        return api_year
+
+        return api_year.strip()
 
     @property
     def type(self):
         return self.key['Type']    
+     
+    def isFinishedStreaming(self):
+        """ return True if series is over else return False """
+        
+        date = self.year
+        start, end  = self.year[:4] , self.year[5:]
+        start_f, end_f  = dating.compare_dates(start), dating.compare_dates(end)
+
+        # print(date)
+        # print(start," --> ",end)
+        # print(start_f,end_f)
+        
+        if len(date) is 4 and dating.compare_dates(date) is True:
+            # print("2018 ya zyada",start,"--> ",end)
+            return False
+  
+        elif len(end) is 0:
+            # 2016- type case 
+            return False
+
+
+        elif start_f is False and end_f is False:
+            # 2016-2017 type case 
+            return True
+
+        else:
+            return False
+
      
 
 def fetchLastSeason(title):
@@ -70,7 +98,7 @@ def scrapeDates(title, season):
 def ListFormatter(date_list):
     # print(date_list)
 
-    if date_list[0] is '':
+    if date_list == []:
         # no airdate mentioned in website for episode
         return "CheckPrevious",-1
 
@@ -100,8 +128,12 @@ def getNextEpisodeDate(mpa):
 
   
     emp = ApiDetails(mpa)
-    last_season = fetchLastSeason(emp.imdbID)
 
+    if emp.isFinishedStreaming() is True:
+        return "The show has finished streaming all its episodes"
+    
+    
+    last_season = fetchLastSeason(emp.imdbID)
     expected_date = ''
 
     for seasons in range(int(last_season),0,-1):
@@ -121,8 +153,7 @@ def getNextEpisodeDate(mpa):
 
         elif response == "CheckPrevious" and date != -1:
             # further possibility is there but we got a answer for now
-            # expected_date = date
-            # print("till now = ", expected_date)
+            expected_date = date
             pass
             
 
@@ -140,5 +171,7 @@ def getNextEpisodeDate(mpa):
 
 if __name__ == "__main__":
     mpa = input("Enter TV: ")
-    print(getNextEpisodeDate(mpa))      
+    
+    print(ApiDetails(mpa).isFinishedStreaming())  
+    print(getNextEpisodeDate(mpa))  
     

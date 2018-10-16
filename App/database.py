@@ -12,14 +12,6 @@ class DatabaseEntry:
             database = database_name
         )
 
-    # def createDatabase(self,database_name):
-    #     try:
-    #         mycursor = self.mydb.cursor()
-    #         mycursor.execute("CREATE DATABASE {}".format(database_name))
-    #         self.mydb.commit()
-    #     except Exception as e:
-    #         print(e)
-
 
     def createTable(self,table_name):
         try:
@@ -49,6 +41,9 @@ class DatabaseEntry:
             self.mydb.commit()        
 
             print("Entered !!")
+
+        except Exception as e:
+            print(e)    
 
     
 

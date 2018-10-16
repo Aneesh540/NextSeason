@@ -35,6 +35,7 @@ def dateFormatter(date):
 
     if len(date) is 4:
         string = "The next season begins in {}".format(date)
+        return string
 
     elif  len(date.split()) is 3: 
         formatted_date = parser.parse(date).strftime("%Y-%m-%d")
